@@ -26,18 +26,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // set up less to compile from its own path into public
 // also include bootstrap source
-var bootstrapPath = path.join(__dirname, 'bower_components', 'bootstrap');
-app.use(require('less-middleware')(path.join(__dirname, 'less'), {
-  dest: path.join(__dirname, 'public'),
-  preprocess: {
-    path: function(pathname, req) {
-      return pathname.replace(path.sep + 'stylesheets' + path.sep, path.sep);
-    }
-  },
-  parser: {
-    paths: [path.join(bootstrapPath, 'less')],
-  }
-}));
+// var bootstrapPath = path.join(__dirname, 'bower_components', 'bootstrap');
+// app.use(require('less-middleware')('/less', {
+//   dest: '/css',
+//   pathRoot: path.join(__dirname, 'public'),
+//   parser: {
+//     paths: [path.join(bootstrapPath, 'less')],
+//   }
+// }));
+
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/bower_components'));
 
