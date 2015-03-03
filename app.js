@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var lessMiddleware = require('less-middleware');
 
 var hbs = require('hbs');
 var hbsutils = require('hbs-utils')(hbs);
@@ -24,17 +25,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-// set up less to compile from its own path into public
-// also include bootstrap source
-// var bootstrapPath = path.join(__dirname, 'bower_components', 'bootstrap');
-// app.use(require('less-middleware')('/less', {
-//   dest: '/css',
-//   pathRoot: path.join(__dirname, 'public'),
-//   parser: {
-//     paths: [path.join(bootstrapPath, 'less')],
-//   }
-// }));
 
+app.use(lessMiddleware(__dirname + '/public'));
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/bower_components'));
 
