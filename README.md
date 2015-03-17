@@ -7,5 +7,3 @@ Bootstrap,
 Handlebars,
 Fontawesome,
 and JQuery
-
-The front end dependencies are installed using Bower.
